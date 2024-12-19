@@ -28,6 +28,8 @@ It provides features for:
 Run the project:
  ```bash
 mvn spring-boot:run
+ ```
+3. Access the application at: http://localhost:8080.
 
-Access the application at: http://localhost:8080.
-
+## Author
+- **Sarra RHOUMA**
