@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Connexion</title>
+</head>
+<body>
+<h2>Connexion</h2>
+<form th:action="@{/login}" method="post">
+  <div>
+    <label for="username">Nom d'utilisateur :</label>
+    <input type="text" id="username" name="username" required/>
+  </div>
+  <div>
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" name="password" required/>
+  </div>
+  <button type="submit">Se connecter</button>
+</form>
+<!-- Afficher un message après la déconnexion -->
+<div th:if="${param.logout}">
+  <p>Déconnexion réussie.</p>
+</div>
+</body>
+</html>

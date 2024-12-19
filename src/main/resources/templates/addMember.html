@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${member.id != null ? 'Modifier un membre' : 'Ajouter un membre'}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #565e64;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Titre dynamique selon ajout ou modification -->
+    <h1 class="text-center mb-4" th:text="${member.id != null ? 'Modifier un membre' : 'Ajouter un membre'}"></h1>
+
+    <!-- Formulaire -->
+    <form th:action="@{${member.id != null ? '/members/admin/edit/' + member.id : '/members/admin/add'}}" th:object="${member}" method="post">
+        <!-- Nom -->
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Nom :</label>
+            <input type="text" id="fullName" th:field="*{fullName}" class="form-control" placeholder="Nom du membre" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email :</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="Email du membre" required>
+        </div>
+
+        <!-- Numéro de téléphone -->
+        <div class="mb-3">
+            <label for="phoneNumber" class="form-label">Numéro de téléphone :</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" placeholder="Numéro de téléphone">
+        </div>
+
+        <!-- Boutons -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" th:text="${member.id != null ? 'Modifier' : 'Ajouter'}"></button>
+            <a href="/members" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${subscription.id != null ? 'Modifier un abonnement' : 'Ajouter un abonnement'}"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #565e64;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center mb-4" th:text="${subscription.id != null ? 'Modifier un abonnement' : 'Ajouter un abonnement'}"></h1>
+    <form th:action="@{${subscription.id != null ? '/subscriptions/admin/edit/' + subscription.id : '/subscriptions/admin/add'}}" th:object="${subscription}" method="post">
+        <!-- Type -->
+        <div class="mb-3">
+            <label for="type" class="form-label">Type :</label>
+            <input type="text" id="type" th:field="*{type}" class="form-control" placeholder="Type d'abonnement" required>
+        </div>
+
+        <!-- Prix -->
+        <div class="mb-3">
+            <label for="price" class="form-label">Prix  :</label>
+            <input type="number" id="price" th:field="*{price}" class="form-control" placeholder="Prix de l'abonnement" required>
+        </div>
+
+        <!-- Date de début -->
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Date de début :</label>
+            <input type="date" id="startDate" th:field="*{startDate}" class="form-control" required>
+        </div>
+
+        <!-- Date de fin -->
+        <div class="mb-3">
+            <label for="endDate" class="form-label">Date de fin :</label>
+            <input type="date" id="endDate" th:field="*{endDate}" class="form-control" required>
+        </div>
+
+        <!-- Boutons -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" th:text="${subscription.id != null ? 'Modifier' : 'Ajouter'}"></button>
+            <a href="/subscriptions" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
